@@ -1,57 +1,28 @@
 <template>
     <div id="login-box">
-        <div class="left">
-            <h1>Sign up</h1>
-
-            <form action="" @submit.prevent="login">
-                <input type="text" placeholder="E-mail" v-model="form.email"/>
-                <small v-if="error.email">{{ error.email[0] }}</small>
-                <input type="password" placeholder="Password" v-model="form.password"/>
-                <small v-if="error.password">{{ error.password[0] }}</small>
-
-                <input type="submit" name="signup_submit" value="Login" />
-                <router-link class="goBackLogin" to="/registration">Regis</router-link>
-            </form>
-        </div>
-
-        <div class="right">
-            <span class="loginwith">Sign in with<br />social network</span>
-
-            <button class="social-signin facebook">Log in with facebook</button>
-            <button class="social-signin twitter">Log in with Twitter</button>
-            <button class="social-signin google">Log in with Google+</button>
-        </div>
-        <div class="or">OR</div>
+        <h1>404</h1>
+        <h3>Opps Page Not Found</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, impedit ipsum magni minima quam quis quisquam sapiente tempore vel vitae.</p>
+        <center><router-link to="/" class="goBackLogin" >Go To Home</router-link></center>
     </div>
 </template>
 
 
 <script>
     import { reactive , ref } from 'vue'
-    import router from "../../../router/router";
     export default {
-        setup(){
-
-            let form = reactive({
-                email:"",
-                password:"",
-            });
-            let error = ref('');
-
-            const login = async() =>{
-                await axios.post('/api/v1/user/login',form).then(res =>{
-
-                }).catch(err =>{
-                    console.log(err.response.data.data);
-                    error.value = err.response.data.data
-                })
-            }
+        data(){
             return{
-                form,
-                login,
-                error,
+                email : '',
+                password : ''
             }
-        }
+        },
+        methods:{
+            login(){
+                alert("this is my login");
+            }
+        },
+
     }
 </script>
 
@@ -93,11 +64,24 @@
     }
 
     h1 {
-        margin: 0 0 20px 0;
-        font-weight: 300;
-        font-size: 28px;
+        font-weight: 700;
+        font-family: 'Roboto' , sans-serif;
+        font-size: 78px;
+        text-align: center;
+        padding-top: 30px;
     }
 
+    h3{
+        font-weight: 500;
+        font-family: 'Roboto',sans-serif;
+        font-size: 38px;
+        text-align: center;
+    }
+    p{
+        padding: 0 35px;
+        font-family: 'Roboto',sans-serif;
+        margin-bottom: 25px;
+    }
     input[type="text"],
     input[type="password"] {
         display: block;
@@ -139,7 +123,7 @@
         margin-top: 28px;
         /* width: 120px; */
         /* height: 32px; */
-        background: #4ba016;
+        background: #a03d16;
         border: none;
         border-radius: 2px;
         color: #FFF;

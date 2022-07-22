@@ -4,6 +4,7 @@ import About from "../src/view/About/About.vue"
 import Dashboard from "../src/Backend/Dashbaord/Dashbaord.vue";
 import Registration from "../src/view/Auth/Registration.vue"
 import Login from "../src/view/Auth/Login.vue"
+import NotFound from "../src/view/Errors/NotFound404.vue"
 
 
 const routes = [
@@ -32,6 +33,10 @@ const routes = [
         name:"Login",
         component:Login
     },
+    {
+        path: '/:pathMatch(.*)*',
+        component: NotFound,
+    }
 ]
 
 const router = createRouter({
