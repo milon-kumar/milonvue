@@ -1,13 +1,13 @@
 <template>
     <div id="login-box">
         <div class="left">
-            <h1>Sign up</h1>
+            <h1>Sign In</h1>
 
             <form action="" @submit.prevent="login">
                 <input type="text" placeholder="E-mail" v-model="form.email"/>
-                <small v-if="error.email">{{ error.email[0] }}</small>
+                <small style="color: red;" v-if="error.email">{{ error.email[0] }}</small>
                 <input type="password" placeholder="Password" v-model="form.password"/>
-                <small v-if="error.password">{{ error.password[0] }}</small>
+                <small style="color: red;" v-if="error.password">{{ error.password[0] }}</small>
 
                 <input type="submit" name="signup_submit" value="Login" />
                 <router-link class="goBackLogin" to="/registration">Regis</router-link>
@@ -28,10 +28,11 @@
 
 <script>
     import { reactive , ref } from 'vue'
+    import { useRouter } from 'vue-router'
     import router from "../../../router/router";
     export default {
         setup(){
-
+            const router = useRouter()
             let form = reactive({
                 email:"",
                 password:"",
@@ -40,9 +41,20 @@
 
             const login = async() =>{
                 await axios.post('/api/v1/user/login',form).then(res =>{
-
+                    if (res.data.status === true){
+                        localStorage.setItem('token',res.data._token)
+                        toast.fire({
+                            icon:'success',
+                            title:res.data.message
+                        });
+                        router.push({name:'Dashboard'})
+                    }
                 }).catch(err =>{
                     console.log(err.response.data.data);
+                    toast.fire({
+                        icon:'error',
+                        title:err.response.data.message
+                    });
                     error.value = err.response.data.data
                 })
             }

@@ -1,7 +1,7 @@
 <template>
 
     <!--Header Section-->
-        <navbar></navbar>
+<!--        <navbar></navbar>-->
     <!--Header Section-->
     <!--    Heor Section-->
     <section id="hero">
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-    import Navbar from "../../layout/Navbar.vue"
+    // import Navbar from "../../layout/Navbar.vue"
     import Language from "../../component/Language/Language.vue"
     import Counter from "../../component/Counter/Counter.vue"
     import WorkMenu from "../../component/Work/WorkMenu.vue"
@@ -70,7 +70,7 @@
     import Footer from "../../layout/Footer.vue"
     export default {
         components:{
-            Navbar,
+            // Navbar,
             Language,
             Counter,
             WorkMenu,

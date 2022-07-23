@@ -1,5 +1,14 @@
 <template>
-    <router-link to="/">go back</router-link>
+<!--    <router-link to="/">Go Back</router-link>-->
+    <button @click="logout"
+        style="padding: 8px 15px;
+        background: #55ACEE;
+        border:none;
+        margin: 30px 50px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    ">Logout</button>
     <table class="styled-table" border>
         <tr>
             <th>sl</th>
@@ -22,7 +31,24 @@
 </template>
 
 <script>
+    import {useRouter} from "vue-router"
     export default {
+        setup(){
+            const router = useRouter()
+            const logout =  ()=>{
+                localStorage.removeItem('token')
+                toast.fire({
+                    icon:'success',
+                    title:"Logout Success "
+                })
+                router.push({name:'Home'})
+
+            }
+            return{
+                logout,
+            }
+        },
+
         data(){
             return{
                 users:[]

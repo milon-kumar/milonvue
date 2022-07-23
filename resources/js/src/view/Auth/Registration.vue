@@ -2,14 +2,17 @@
     <div id="login-box">
         <div class="left">
             <h1>Sign up</h1>
+            <form action="" @submit.prevent="register">
+                <input type="text" name="username" placeholder="Username" v-model="form.user_name"/>
+                <small style="color: red;">{{error[0]}}</small>
+                <input type="text" name="email" placeholder="E-mail" v-model="form.email"/>
+                <input type="password" name="password" placeholder="Password" v-model="form.password"/>
+                <input type="password" name="password2" placeholder="Retype password" v-model="form.c_password"/>
 
-            <input type="text" name="username" placeholder="Username" />
-            <input type="text" name="email" placeholder="E-mail" />
-            <input type="password" name="password" placeholder="Password" />
-            <input type="password" name="password2" placeholder="Retype password" />
+                <input type="submit" name="signup_submit" value="Sign me up" />
+                <a class="goBackBtn" href="/">Go Back</a>
+            </form>
 
-            <input type="submit" name="signup_submit" value="Sign me up" />
-            <a class="goBackBtn" href="/">Go Back</a>
         </div>
 
         <div class="right">
@@ -22,6 +25,49 @@
         <div class="or">OR</div>
     </div>
 </template>
+
+<script>
+    import { reactive , ref } from 'vue'
+    import { useRouter } from 'vue-router'
+    export default {
+        setup(){
+            const router = useRouter()
+            let form = reactive({
+                user_name:"",
+                email:"",
+                password:"",
+                c_password:"",
+            });
+            let error = ref('');
+
+            const register = async() =>{
+                await axios.post('/api/v1/user/register',form).then(res =>{
+                    if (res.data.status === true){
+                        localStorage.setItem('token',res.data._token)
+                        toast.fire({
+                            icon:'success',
+                            title:res.data.message
+                        });
+                        router.push({name:'Login'})
+                    }
+                }).catch(err =>{
+                    console.log(err.response.data.data);
+                    toast.fire({
+                        icon:'error',
+                        title:err.response.data.message
+                    });
+                    error.value = err.response.data.data
+                })
+            }
+            return{
+                form,
+                register,
+                error,
+            }
+        }
+    }
+</script>
+
 <style scoped>
     @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
     *:focus {
