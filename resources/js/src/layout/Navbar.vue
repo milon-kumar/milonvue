@@ -3,18 +3,18 @@
         <div class="headderWrape">
             <div class="headder">
                 <div class="logo">
-                    <a href="">
+                    <router-link :to="{name:'Home'}">
                         <!--                        <img class="logoImg" src="img/logo.png" alt="">-->
                         <h2>MIL<font class="fontColor">O</font>N</h2>
-                    </a>
+                    </router-link>
                 </div>
                 <nav class="menu">
                     <ul>
                         <li>
-                            <a href="/">Home</a>
+                            <router-link :to="{name:'Home'}">Home</router-link>
                         </li>
                         <li>
-                            <router-link to="/about">About</router-link>
+                            <router-link to="/about">Data Center</router-link>
                         </li>
                         <li>
                             <a href="">Blog</a>
@@ -22,6 +22,7 @@
                         <li>
                             <router-link to="/backend">Dashboard</router-link>
                         </li>
+
                         <li>
                             <router-link to="/registration">Registration</router-link>
                         </li>
@@ -34,3 +35,7 @@
         </div>
     </header>
 </template>
+
+<script>
+
+</script>

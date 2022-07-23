@@ -10,6 +10,8 @@ import 'sweetalert2/dist/sweetalert2.css';
 
 window.Swal = Swal;
 
+
+
 const toast = Swal.mixin({
     toast:true,
     position:'top-end',
@@ -18,6 +20,8 @@ const toast = Swal.mixin({
     timerProgressBar:true,
     closeButtonAriaLabel:true
 });
+
+
 
 window.toast = toast,
 
