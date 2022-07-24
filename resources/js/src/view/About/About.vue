@@ -2,8 +2,7 @@
     <h1>This is my about</h1>
 
     <router-link class="btn" to="/">Go Back To Home</router-link>
-    <router-link class="btn" :to="{name:'companies.index'}">All Companies Data</router-link>
-    <router-link class="btn" to="/">Go Back To Home</router-link>
+
 
 
 </template>

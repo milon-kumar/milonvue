@@ -8,6 +8,15 @@ import NotFound from "../src/view/Errors/NotFound404.vue"
 import CompaniesIndex from "../src/component/Companies/Index.vue"
 import CompaniesCreate from "../src/component/Companies/Create.vue"
 import CompaniesEdit from "../src/component/Companies/Edit.vue"
+import BlogIndex from "../src/component/Blog/Index.vue"
+import BlogEdit from "../src/component/Blog/Edit.vue"
+import BlogCreate from "../src/component/Blog/Create.vue"
+import TagIndex from "../src/component/Tag/Index.vue"
+import TagCreate from "../src/component/Tag/Create.vue"
+import TagEdit from "../src/component/Tag/Edit.vue"
+import Otherrs from "../src/component/Otherrs/Otherrs.vue"
+
+
 
 const routes = [
     {
@@ -53,18 +62,85 @@ const routes = [
     {
         path: '/companies',
         name: 'companies.index',
-        component:CompaniesIndex
+        component:CompaniesIndex,
+        meta:{
+            requireAuth:true,
+        }
     },
     {
         path: '/companies',
         name: 'company.create',
-        component:CompaniesCreate
+        component:CompaniesCreate,
+        meta:{
+            requireAuth:true,
+        }
     },
     {
         path: '/companies/:id/edit',
         name: 'company.edit',
         component:CompaniesEdit,
         props: true
+    },
+
+    // Backend Route Here
+
+    {
+        path: "/blogs",
+        name: "blog.index",
+        component: BlogIndex,
+        meta: {
+            requireAuth: true
+        }
+    },{
+        path: "/blogs",
+        name: "blog.create",
+        component: BlogCreate,
+        meta: {
+            requireAuth: true
+        }
+    },
+    {
+        path: "/blog/:id/edit",
+        name: "blog.edit",
+        component: BlogEdit,
+        meta: {
+            requireAuth: true,
+        }
+    },
+
+
+    // Tag Router
+    {
+        path: "/tags",
+        name: "tag.index",
+        component: TagIndex,
+        meta: {
+            requireAuth: true
+        }
+    },{
+        path: "/tags",
+        name: "tag.create",
+        component: TagCreate,
+        meta: {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/tag/:id/edit',
+        name: 'tag.edit',
+        component:TagEdit,
+        props: true,
+        meta: {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/others',
+        name: 'otherText',
+        component:Otherrs,
+        meta: {
+            requireAuth: true
+        }
     },
     {
         path: '/:pathMatch(.*)*',

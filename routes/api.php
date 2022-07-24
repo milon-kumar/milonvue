@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CompanyController;
+use App\Http\Controllers\Api\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,16 @@ Route::group(['prefix'=>'v1/'],function (){
     Route::get('/users',[AuthController::class,'users']);
     Route::post('/user/register',[AuthController::class,'registration']);
     Route::post('/user/login',[AuthController::class,'login'])->name('login');
+    Route::apiResource('companies', CompanyController::class);
+
+
+//    Tag Crud
+
+    Route::get('/tags',[TagController::class,'index']);
+    Route::post('/tags',[TagController::class,'store']);
+    Route::get('/tag/show/{id}',[TagController::class,'show']);
+    Route::post('/tag/update/{id}',[TagController::class,'update']);
+    Route::delete('/tag/destroy/{id}',[TagController::class,'destroy']);
 });
 
-Route::apiResource('companies', CompanyController::class);
+

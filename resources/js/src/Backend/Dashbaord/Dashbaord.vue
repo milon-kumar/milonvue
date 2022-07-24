@@ -1,14 +1,10 @@
 <template>
 <!--    <router-link to="/">Go Back</router-link>-->
-    <button @click="logout"
-        style="padding: 8px 15px;
-        background: #55ACEE;
-        border:none;
-        margin: 30px 50px;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-    ">Logout</button>
+    <button @click="logout" class="btn">Logout</button>
+    <router-link class="btn" :to="{name:'companies.index'}">All Companies Data</router-link>
+    <router-link class="btn" :to="{name:'blog.index'}">Blog</router-link>
+    <router-link class="btn" :to="{name:'tag.index'}">Tag</router-link>
+    <router-link class="btn" :to="{name:'otherText'}">Others</router-link>
     <table class="styled-table" border>
         <tr>
             <th>sl</th>
@@ -74,6 +70,16 @@
     }
 </script>
 <style scoped>
+    .btn{
+        padding: 8px 15px;
+        background: #55ACEE;
+        border:none;
+        margin: 30px 50px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+
+    }
     .styled-table {
         border-collapse: collapse;
         margin: 25px auto;

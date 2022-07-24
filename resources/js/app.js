@@ -4,6 +4,7 @@ import {createApp} from 'vue'
 import router from './router/router.js'
 import App from "./App.vue"
 
+import store from './state/state.js'
 
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
@@ -23,11 +24,13 @@ const toast = Swal.mixin({
 
 
 
-window.toast = toast,
+window.toast = toast
 
     // toast.fire({
     //     icon:'success',
     //     title:"Login Success",
     // })
 
-createApp(App).use(router).mount('#app')
+
+const app =  createApp(App).use(store).use(router).mount('#app')
+

@@ -11,12 +11,12 @@
         const router = useRouter()
 
         const getCompanies = async ()=>{
-            let response = await axios.get('/api/companies')
+            let response = await axios.get('/api/v1/companies')
             companies.value = response.data.data
         }
 
         const getCompany = async (id) => {
-            let response = await axios.get(`/api/companies/${id}`)
+            let response = await axios.get(`/api/v1/companies/${id}`)
             company.value = response.data.data
         }
 
@@ -24,7 +24,7 @@
             errors.value = ''
 
             try {
-                await axios.post('/api/companies', data)
+                await axios.post('/api/v1/companies', data)
                 toast.fire({
                     icon:"success",
                     title:"Created Success :)"
@@ -46,7 +46,7 @@
         const updateCompany = async (id) => {
             errors.value = ''
             try {
-                await axios.patch(`/api/companies/${id}`, company.value)
+                await axios.patch(`/api/v1/companies/${id}`, company.value)
                 toast.fire({
                     icon:"success",
                     title:"Updated Success :)"
@@ -66,7 +66,7 @@
         }
 
         const destroyCompany = async (id) => {
-            await axios.delete(`/api/companies/${id}`)
+            await axios.delete(`/api/v1/companies/${id}`)
         }
 
         return {
