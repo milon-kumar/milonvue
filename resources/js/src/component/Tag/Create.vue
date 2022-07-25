@@ -9,9 +9,9 @@
                     <div class="card-body">
                         <div class="">
                             <div class="mt-2 mb-6 text-sm text-red-600" v-if="errors !== ''">
-                                <ul>
-                                    <li v-for="error in errors">{{error}}</li>
-                                </ul>
+                                <div class="alert alert-danger">
+                                    {{errors}}
+                                </div>
                                 <!--                                {{ errors }}-->
                             </div>
                         </div>
@@ -30,13 +30,13 @@
 <!--                            </div>-->
                             <div class="mb-3">
                                 <div class="form-check">
-                                    <input class="form-check-input" checked value= "1"  type="radio" v-model="form.status" id="flexRadioDefault1">
+                                    <input class="form-check-input" checked value='published'  type="radio" v-model="form.status" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Published
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" value ="0" id="flexRadioDefault2" v-model="form.status">
+                                    <input class="form-check-input" type="radio" value ='unpublished' id="flexRadioDefault2" v-model="form.status">
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Unpublished
                                     </label>
@@ -57,24 +57,21 @@
     import { reactive } from 'vue'
     export default {
         setup(){
-            const {} = tagCompanies()
+            const {errors,storeTag} = tagCompanies()
 
             const form = reactive({
                 'title':'',
                 'body':'',
-                'status':'',
+                'status':[],
             })
-
             const saveTag = async ()=>{
-                console.log(form)
+                await storeTag({...form})
             }
-
-
             return{
                 form,
                 saveTag,
+                errors
             }
         },
-
     }
 </script>

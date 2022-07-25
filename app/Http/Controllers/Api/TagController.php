@@ -7,50 +7,65 @@ use App\Http\Requests\TagRequest;
 use App\Http\Resources\TagResource;
 use App\Models\Tag;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function index()
     {
         return TagResource::collection(Tag::all());
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return TagResource
+     */
     public function store(TagRequest $request)
     {
-        $tag = Tag::create([
-            'user_id'=>$request->input('user_id'),
-            'title'=>$request->input('title'),
-            'body'=>$request->input('body'),
-            'image'=>$request->input('image'),
-            'status'=>$request->input('status'),
-        ]);
-        return new TagResource($tag);
+        $tag = Tag::create($request->validate());
 
+        return  new TagResource($tag);
     }
 
-    public function show($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Tag  $tag
+     * @return TagResource
+     */
+    public function show(Tag $tag)
     {
-        return new TagResource(Tag::findOrFail($id));
+        return  new TagResource($tag);
     }
 
-    public function update(TagRequest $request ,$id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Tag  $tag
+     * @return TagResource
+     */
+    public function update(Request $request, Tag $tag)
     {
-        $tag = Tag::findOrFail($id);
-
-         $tag->update([
-           'title'  => $request->input('title'),
-           'body'   => $request->input('body'),
-           'status' => $request->input('status'),
-        ]);
-
-         return new  TagResource($tag);
+        $tag->update($request->validate());
+        return  new TagResource($tag);
     }
-    public function destroy($id)
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Tag  $tag
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Tag $tag)
     {
-        $tag = Tag::findOrFail($id);
         $tag->delete();
         return response()->noContent();
     }
-
 }

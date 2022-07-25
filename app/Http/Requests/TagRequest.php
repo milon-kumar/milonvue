@@ -24,10 +24,10 @@ class TagRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'     => ['required','min:2'],
-            'body'      => ['required','min:5','max:5000'],
-            'image'     => ['nullable','image','mimes:jpg,jpeg,png'],
-            'status'    => ['required'],
+            'title' =>['required'],
+            'body' =>[''],
+            'image' =>['nullable','image'],
+            'status' =>['nullable'],
         ];
     }
 }

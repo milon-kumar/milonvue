@@ -34,11 +34,7 @@ Route::group(['prefix'=>'v1/'],function (){
 
 //    Tag Crud
 
-    Route::get('/tags',[TagController::class,'index']);
-    Route::post('/tags',[TagController::class,'store']);
-    Route::get('/tag/show/{id}',[TagController::class,'show']);
-    Route::post('/tag/update/{id}',[TagController::class,'update']);
-    Route::delete('/tag/destroy/{id}',[TagController::class,'destroy']);
+    Route::apiResource('/tags',TagController::class);
 });
 
 

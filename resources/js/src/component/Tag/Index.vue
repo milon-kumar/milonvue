@@ -1,16 +1,13 @@
 <template>
-    <h1>This  Tag index</h1>
-    <router-link :to="{name: 'tag.create'}">Create</router-link>
-    <router-link :to="{name:'tag.edit',params:{ id:1 }}">Edit</router-link>
-
-
-    <div class="container">
+    <div class="container py-5 my-5">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         Tags Table
+                        <router-link class="btn btn-primary btn-sm" :to="{name: 'tag.create'}">Create</router-link>
                     </div>
+
                     <div class="card-body">
                         <table class="table table-stripe">
                             <thead>

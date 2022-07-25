@@ -16,11 +16,37 @@ export default function tagCompanies(){
         });
     }
 
+    const storeTag = async (data)=>{
+
+        console.log(data);
+        errors.value=''
+        try {
+            await axios.post('/api/v1/tags',data).then(response=>{
+                toast.fire({
+                    icon:"success",
+                    title:"Tag Saved :)"
+                })
+            })
+        }catch (e) {
+            if (e.response.status === 422){
+                for (const key in e.response.data.errors){
+                    toast.fire({
+                        icon:"error",
+                        title:"Created Faild :("
+                    })
+                    errors.value += e.response.data.errors[key][0] + ' ';
+                }
+            }
+        }
+
+    }
+
     return{
         tags,
         tag,
         errors,
         route,
         getTags,
+        storeTag,
     }
 }
